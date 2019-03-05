@@ -286,6 +286,8 @@ module Jazzy
     # rubocop:disable Metrics/PerceivedComplexity
     def self.should_document?(doc)
       return false if doc['key.doc.comment'].to_s.include?(':nodoc:')
+      # Hide declarations that begin with leading underscore.
+      return false if doc['key.name'].to_s.start_with?('_')
 
       type = SourceDeclaration::Type.new(doc['key.kind'])
 
