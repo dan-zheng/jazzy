@@ -287,7 +287,10 @@ module Jazzy
     def self.should_document?(doc)
       return false if doc['key.doc.comment'].to_s.include?(':nodoc:')
       # Hide declarations that begin with leading underscore.
-      return false if doc['key.name'].to_s.start_with?('_')
+      # NOTE: Hack for `TensorFlow._Raw` enum.
+      # unless doc['key.name'].to_s == '_Raw'
+      #   return false if doc['key.name'].to_s.start_with?('_')
+      # end
 
       type = SourceDeclaration::Type.new(doc['key.kind'])
 
