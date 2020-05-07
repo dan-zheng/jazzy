@@ -21,6 +21,13 @@ module Jazzy
 
       def name
         @type && @type[:jazzy]
+        # Replace leading underscore with leading '-'.
+        # result = @type && @type[:jazzy]
+        # if result
+        #   result = result.gsub(/^_/, '-')
+        # end
+        # p result
+        # result
       end
 
       # name to use for type subdirectory in URLs for back-compatibility

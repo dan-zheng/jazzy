@@ -109,7 +109,6 @@ module Jazzy
     attr_accessor :column
     attr_accessor :usr
     attr_accessor :modulename
-    attr_accessor :name
     attr_accessor :objc_name
     attr_accessor :declaration
     attr_accessor :other_language_declaration
@@ -132,6 +131,14 @@ module Jazzy
     attr_accessor :unavailable_message
     attr_accessor :generic_requirements
     attr_accessor :inherited_types
+
+    attr_reader :name
+
+    # Custom setter for name.
+    def name=(value)
+      # Replace leading underscore with leading '-'.
+      @name = value.gsub(/^_/, '-')
+    end
 
     def usage_discouraged?
       unavailable || deprecated
